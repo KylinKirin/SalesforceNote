@@ -15,10 +15,10 @@ Apex
     }
 
 JS
-        getType().then(optList =>{
-            if(optList){
-                optList.forEach(opt => {
-                    this.typeOptions = [...this.typeOptions, { 'label' : opt.label, 'value' : opt.value}];
-                });
-            }
-        })
+    getType().then(optList =>{
+        if(optList){
+            optList.forEach(opt => {
+                this.typeOptions = [...this.typeOptions, { 'label' : opt.label, 'value' : opt.value}];
+            });
+        }
+    })
