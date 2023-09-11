@@ -1,0 +1,24 @@
+Apex
+    @AuraEnabled
+    public static List<Object> getType(){
+        List<Object> pickListValueList = new List<Object>();
+        Schema.DescribeFieldResult fieldResult = ObjectName__c.FieldName__c.getDescribe();
+        List<Schema.PickListEntry> ple = fieldResult.getPicklistValues();
+        for(Schema.PickListEntry pickListVal : ple){
+            Map<String,String> pickListValueMap = new Map<String,String>{
+                'label' => pickListVal.getLabel(),
+                'value' => pickListVal.getValue()
+            };
+            pickListValueList.add(pickListValueMap);
+        }
+        return pickListValueList;
+    }
+
+JS
+        getType().then(optList =>{
+            if(optList){
+                optList.forEach(opt => {
+                    this.typeOptions = [...this.typeOptions, { 'label' : opt.label, 'value' : opt.value}];
+                });
+            }
+        })
